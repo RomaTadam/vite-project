@@ -42,7 +42,8 @@ function App() {
       <hr />
       <div>
         {/* console.log(savedItems); */}
-        
+        {/* <PostItem post={{id:1, value: "test from App"}} /> */}
+
         <PostList savedItems={savedItems} />
       </div>
     </>
