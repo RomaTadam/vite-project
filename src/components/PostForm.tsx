@@ -9,8 +9,8 @@ export default function PostForm({create}) {
   const [toBuy, setToBuy] = useState({product: ""});
 
   const addNew = (e) => {
-    console.log('addNew');
-    console.log(e);
+    // console.log('addNew');
+    // console.log(e);
 
     e.preventDefault();
     const newNew = {

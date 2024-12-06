@@ -14,10 +14,15 @@ function App() {
   ]);
 
   const addNewBuy = (newT) => {
-    console.log('addNewBuy')
-    console.log(newT)
+    // console.log('addNewBuy')
+    // console.log(newT)
     setSavedItems([...savedItems, newT]);
-  }  
+  }
+  
+  const removeItem = (trash) => {
+    // console.log(trash)
+    setSavedItems(savedItems.filter(qq => qq.id !== trash.id))
+  }
 
   return (
     <div className='App'>
@@ -28,7 +33,12 @@ function App() {
       <hr className='Hr'/>
       <div>
         <h1>Список покупок:</h1>
-        <PostList savedItems={savedItems} />
+        {savedItems.length !== 0
+          ?
+            <PostList remove={removeItem} savedItems={savedItems} />
+          :
+            <h3 style={{textAlign:'center'}}>Список пуст!</h3>
+        }
       </div>
     </div>
   )
