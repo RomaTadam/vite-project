@@ -1,33 +1,50 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useRef, useState } from 'react'
+import MyButton from './components/button/MyButton.tsx'
+import PostItem from './components/PostItem.tsx'
+import MyInput from './components/input/MyInput.tsx'
+import PostList from './components/PostList.tsx';
+// import './App.css'
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [toBuy, setToBuy] = useState([]);
+  const [savedItems, setSavedItems] = useState([
+    {id: 1, toBuy: 'test1'},
+    {id: 2, toBuy: 'test2'},
+    {id: 3, toBuy: 'test3'},
+  ]);
+
+  const addNewBuy = (e) => {
+    e.preventDefault();
+    const newToBuy = {
+      id: Date.now(),
+      toBuy
+    }
+    // console.log(toBuy);
+    // console.log(newToBuy);
+    setSavedItems([...savedItems, newToBuy])
+    console.log(savedItems);
+  }
 
   return (
     <>
       <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+        <h1>Добавить покупку</h1>
+        <form>
+          <MyInput
+            value={toBuy}
+            onChange={e => setToBuy(e.target.value)}
+            type="text" 
+            placeholder='Введите покупку' 
+          />
+          <MyButton onClick={addNewBuy}>Добавить покупку</MyButton>
+        </form>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
+      <hr />
+      <div>
+        {/* console.log(savedItems); */}
+        
+        <PostList savedItems={savedItems} />
       </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
     </>
   )
 }
