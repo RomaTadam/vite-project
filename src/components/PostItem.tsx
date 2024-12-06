@@ -7,9 +7,9 @@ export default function PostItem(props) {
   
   
   return (
-    <div>
-      <div>{props.post.id}</div>
-      <div>{props.post.toBuy}</div>
+    <div className='post'>
+      <div>{props.number}</div>
+      <div>{props.post.product}</div>
     </div>
   )
 }

@@ -3,50 +3,34 @@ import MyButton from './components/button/MyButton.tsx'
 import PostItem from './components/PostItem.tsx'
 import MyInput from './components/input/MyInput.tsx'
 import PostList from './components/PostList.tsx';
-// import './App.css'
+import './styles/app.css'
+import PostForm from './components/PostForm.tsx';
 
 function App() {
-  const [toBuy, setToBuy] = useState([]);
   const [savedItems, setSavedItems] = useState([
-    {id: 1, toBuy: 'test1'},
-    {id: 2, toBuy: 'test2'},
-    {id: 3, toBuy: 'test3'},
+    {id: 1, product: 'test1'},
+    {id: 2, product: 'test2'},
+    {id: 3, product: 'test3'},
   ]);
 
-  const addNewBuy = (e) => {
-    e.preventDefault();
-    const newToBuy = {
-      id: Date.now(),
-      toBuy
-    }
-    // console.log(toBuy);
-    // console.log(newToBuy);
-    setSavedItems([...savedItems, newToBuy])
-    console.log(savedItems);
-  }
+  const addNewBuy = (newT) => {
+    console.log('addNewBuy')
+    console.log(newT)
+    setSavedItems([...savedItems, newT]);
+  }  
 
   return (
-    <>
+    <div className='App'>
       <div>
         <h1>Добавить покупку</h1>
-        <form>
-          <MyInput
-            value={toBuy}
-            onChange={e => setToBuy(e.target.value)}
-            type="text" 
-            placeholder='Введите покупку' 
-          />
-          <MyButton onClick={addNewBuy}>Добавить покупку</MyButton>
-        </form>
+        <PostForm create={addNewBuy}/>
       </div>
-      <hr />
+      <hr className='Hr'/>
       <div>
-        {/* console.log(savedItems); */}
-        {/* <PostItem post={{id:1, value: "test from App"}} /> */}
-
+        <h1>Список покупок:</h1>
         <PostList savedItems={savedItems} />
       </div>
-    </>
+    </div>
   )
 }
 
