@@ -23,7 +23,7 @@ function App() {
   const removeItem = (trash) => {
     // console.log(trash)
     // setSavedItems(savedItems.filter(qq => qq.id !== trash.id))
-    setSavedItems(savedItems => savedItems.filter(qq => qq.id !== trash.id))
+    setSavedItems(savedItems => savedItems.filter(qq => qq?.id !== trash?.id))
   }
 
   return (

@@ -9,8 +9,8 @@ export default function PostItem(props) {
   
   return (
     <div className='post'>
-      <div>{props.number}</div>
-      <div>{props.post.product}</div>
+      <div>{props?.number}</div>
+      <div>{props?.post?.product}</div>
       <div>
         <MyButton onClick={() => props.remove(props.post)}>Удалить</MyButton>
       </div>
