@@ -16,12 +16,14 @@ function App() {
   const addNewBuy = (newT) => {
     // console.log('addNewBuy')
     // console.log(newT)
-    setSavedItems([...savedItems, newT]);
+    // setSavedItems([...savedItems, newT]);
+    setSavedItems((savedItems) => [...savedItems, newT]);
   }
   
   const removeItem = (trash) => {
     // console.log(trash)
-    setSavedItems(savedItems.filter(qq => qq.id !== trash.id))
+    // setSavedItems(savedItems.filter(qq => qq.id !== trash.id))
+    setSavedItems(savedItems => savedItems.filter(qq => qq.id !== trash.id))
   }
 
   return (
