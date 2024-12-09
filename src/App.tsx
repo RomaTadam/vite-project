@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import MyButton from './components/button/MyButton.tsx'
 import PostItem from './components/PostItem.tsx'
 import MyInput from './components/input/MyInput.tsx'
@@ -25,6 +25,22 @@ function App() {
     // setSavedItems(savedItems.filter(qq => qq.id !== trash.id))
     setSavedItems(savedItems => savedItems.filter(qq => qq?.id !== trash?.id))
   }
+
+  useEffect(() => {
+    // Устанавливаем интервал добавления
+    const intervalId = setInterval(() => {
+      const autoItem = {
+        id: Date.now(), 
+        product: `Авто-покупка ${new Date().toLocaleTimeString()}`
+      };
+
+      // Добавляем элемент каждые 5 секунд
+      setSavedItems(prev => [...prev, autoItem]);
+    }, 5000); // 5000 мс = 5 секунд
+
+    // Важно: очищаем интервал при размонтировании
+    return () => clearInterval(intervalId);
+  }, []); // Пустой массив зависимостей
 
   return (
     <div className='App'>
